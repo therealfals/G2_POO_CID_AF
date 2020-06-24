@@ -7,10 +7,10 @@
 
   public static function getConnexion(){
       //Connexion est fermée
-      if(self::$pdo==null){
+      
           try{
             self::$pdo = new PDO("mysql:host=localhost;dbname=g2_poo_cid_af","root","");
-            self::$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);
+            self::$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
             self::$pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
             return self::$pdo;
            // var_dump(self::$pdo);
@@ -18,7 +18,7 @@
              die($ex);
           }
         
-      }
+      
       
   }
  private function closeConnexion(){
