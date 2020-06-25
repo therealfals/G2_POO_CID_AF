@@ -7,12 +7,15 @@ class ChambreDao extends Manager {
         $this->className="Chambre";
     }
 
-      public function add($obj){
-        $sql="INSERT INTO etudiant SET nom=?,prenom=?";
-    $sql="INSERT INTO table VALUES ('$obj->getid()', '$obj->getPrenom()','$obj->getNom()','$obj->getEmail()','$obj->getTelephone()')";
-        $req=Manager::getConnexion();
-        $req->execute($sql);
-       return $this->executeUpdate($sql)!=0;
+    
+    public function addChambre($obj){
+    
+        $rep =Manager::getConnexion();
+        var_dump($rep);
+        $req=$rep->prepare('INSERT INTO chambre SET numero=?, numBatiment=?,type=?');
+        $req->execute([$obj['numero'],$obj['numBatiment'],$obj['type']]);
+  
+       
     }
     public function update($obj){
 

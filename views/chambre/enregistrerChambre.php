@@ -6,16 +6,16 @@ Enregistrer chambre
 
 
 <div class="contenu">
-<form class='form-group col-md-6 mx-auto mt-5'method='POST'action="<?=BASE_URL."/chambre/addChambre"?>">
+<form class='form-group col-md-6 mx-auto mt-5'method='POST'action="<?=BASE_URL."/chambre/addingChambre"?>">
 
-  <input type="text" name="nbr"  class='mb-5 form-control border border-primary bg bg-dark text-white rounded rounded-pill 'placeholder='Numero Batiment'>
-  <select name="choisir" class="custom-select form-control mb-5 border border-primary bg bg-dark text-white rounded rounded-pill " id="inputGroupSelect01">
+  <input type="text" name="numBatiment"  class='mb-5 form-control border border-primary bg bg-dark text-white rounded rounded-pill 'placeholder='Numero Batiment'>
+  <select name="type" class="custom-select form-control mb-5 border border-primary bg bg-dark text-white rounded rounded-pill " id="inputGroupSelect01">
     <option selected>Type Chambre</option>
-    <option value="1">Individuel</option>
-    <option value="2">A deux</option>
+    <option value="one">Individuel</option>
+    <option value="two">A deux</option>
  
   </select>
-  <input type="submit" class="form-control bg-primary border-primary text-white">
+  <input type="submit" name='btn_chamb' value='Enregistrer' class="form-control bg-primary border-primary text-white">
 
 </form>
 

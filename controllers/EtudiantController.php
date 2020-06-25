@@ -13,6 +13,64 @@ Class Etudiantcontroller extends Controller{
     
     echo 'Cheikh ibra fall';
     }
+    public function updateEtudiant()
+    {
+        $this->dao=new EtudiantDao();
+        $etudss=  $this->dao->modifEtud($_POST);
+        var_dump($_POST);
+        echo json_encode(  $etudss);
+    }
+    public function deleteEtudiant()
+    {
+        $this->dao=new EtudiantDao();
+        $etuds=  $this->dao->suppEtud($_POST['id']);
+    }
+    public function getEtudiantByID()
+    {
+
+        $this->dao=new EtudiantDao();
+        $etuds=  $this->dao->getId($_POST['id']);
+        echo json_encode($etuds);
+    }
+    public function listEtuds(){
+   
+        $this->dao=new EtudiantDao();
+        if(isset($_POST['limit']) && isset($_POST['offset'])){
+            $etuds=  $this->dao->getAllEtudiant($_POST['limit'],$_POST['offset']);
+            echo json_encode($etuds);
+
+        }
+  
+    }
+    public function showListEtudiant()
+    {
+    //     $this->dao=new EtudiantDao();
+    //   $etuds=  $this->dao->getAllEtudiant();
+    // //  var_dump($etuds);
+    // echo json_encode($etuds);
+      $this->data_view["liste"]="<table>";
+                  $this->layout="default";
+                 $this->folder="etudiant";
+                 $this->view="listeEtudiant";
+                  $this->render(); 
+                  $i=1; 
+                
+    //   foreach ($etuds as $key ) {
+    //     $this->data_view["liste"].="
+    //     <tr>
+    //     <td>$i</td>
+    //     <td>$key->matricule</td>
+    //     <td>$key->prenom</td>
+    //     <td>$key->nom</td>
+    //     <td>$key->email</td>
+    //     <td>$key->telephone</td>
+    //     </tr>
+    //     ";
+    //       $i++;
+    //   }
+      $this->data_view["liste"].="</table>";
+
+    }
     public function showEtudiant(){
         $this->view="enregistrerEtudiant";
         $this->layout="default";
@@ -60,29 +118,29 @@ Class Etudiantcontroller extends Controller{
             if(isset($_POST['adresse'])){
                 $this->dao->addAddr($row);
             }else{
-                
+                var_dump($_POST);
             $chambre=$this->dao->getChbr($_POST['list']);
               
-                if(strlen($chambre->numBatiment)==1){
-                    $numChambre="00"; 
-                    $numChambre.=$chambre->numBatiment; 
-                    $numChambre.=$unik; 
+                // if(strlen($chambre->numBatiment)==1){
+                //     $numChambre="00"; 
+                //     $numChambre.=$chambre->numBatiment; 
+                //     $numChambre.=$unik; 
 
-                }
-                if(strlen($chambre->numBatiment)==2){
-                    $numChambre="0"; 
-                    $numChambre.=$chambre->numBatiment;
-                    $numChambre.=$unik; 
-                }
-                if(strlen($chambre->numBatiment)==3){
-                    $numChambre=$chambre->numBatiment;
-                    $numChambre.=$unik; 
-                }
+                // }
+                // if(strlen($chambre->numBatiment)==2){
+                //     $numChambre="0"; 
+                //     $numChambre.=$chambre->numBatiment;
+                //     $numChambre.=$unik; 
+                // }
+                // if(strlen($chambre->numBatiment)==3){
+                //     $numChambre=$chambre->numBatiment;
+                //     $numChambre.=$unik; 
+                // }
               //  $numChambre.=$chambre->
-              var_dump($numChambre);
-                                $row['numChambre']=$numChambre;
+              //var_dump($numChambre);
+                                $row['numChambre']=$chambre->numero;
               //  var_dump($this->dao->addChbr($row));
-                $this->dao-> updateChbr($numChambre,$_POST['list']);
+                 $this->dao-> updateChbr($_POST['list']);
                 $this->dao->addChbr($row);
 
             }

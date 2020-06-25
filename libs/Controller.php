@@ -6,6 +6,7 @@ class Controller{
     protected $folder;
     protected $data_view=[];
     protected $dao;
+    protected $daos;
     protected $validator;
 
     public function render(){

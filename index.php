@@ -1,4 +1,5 @@
 <?php
+ini_set('memory_limit','512M');
 define("BASE_URL","http://localhost/G2_POO_CID_AF");
 
 require_once("./libs/Router.php");

@@ -29,7 +29,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="<?=BASE_URL."/etudiant/showEtudiant"?>">Enregistrer un etudiant</a>
-          <a class="dropdown-item" href="#">Liste etudiants</a>
+          <a class="dropdown-item" href="<?=BASE_URL."/etudiant/showListEtudiant"?>">Liste etudiants</a>
  
         </div>
       </li>
@@ -51,7 +51,7 @@
 <?= @$login; ?>
 </h1>
 <?php echo  $content_for_layout;?>
-
+<?=@$liste?>
 </div>
 </div>
 

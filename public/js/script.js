@@ -55,13 +55,20 @@ var y=4;
             console.log(data);
             var select=document.createElement('select')
             select.setAttribute('name','list')
-            for (let i = 0; i < data.length; i++) {
+            for (let i = 0; i < data[0].length; i++) {
                var option=document.createElement('option')
-               option.setAttribute('value',data[i].id)
-               option.innerText=data[i].type
+               option.setAttribute('value',data[0][i].id)
+               option.innerText=data[0][i].type
                 select.append(option)
                 
             }
+            for (let i = 0; i < data[1].length; i++) {
+                var option=document.createElement('option')
+                option.setAttribute('value',data[1][i].id)
+                option.innerText=data[1][i].type
+                 select.append(option)
+                 
+             }
             $('#dive').append(select)
         }
     })
