@@ -11,9 +11,9 @@ class EtudiantDao extends Manager {
         // $sql='INSERT INTO '.$this->tableName.' (matricule,prenom, nom, email, telephone)       VALUES ('.$obj['matricule'].','.$obj['prenom'].','.$obj['nom'].','.$obj['email'].','.$obj['telephone'].')';
       //  $rep=$this->getConnexion();
         $rep =Manager::getConnexion();
-        var_dump($rep);
-        $req=$rep->prepare('INSERT INTO etudiant SET matricule=?,prenom=?, nom=?, email=?, telephone=?,date=?,adresse=?');
-        $req->execute([$obj['matricule'],$obj['prenom'],$obj['nom'],$obj['email'],$obj['telephone'],$obj['date'],$obj['adresse']]);
+        // var_dump($rep);
+        $req=$rep->prepare('INSERT INTO etudiant SET matricule=?,prenom=?, nom=?, email=?, telephone=?,date=?,type=?,adresse=?');
+        $req->execute([$obj['matricule'],$obj['prenom'],$obj['nom'],$obj['email'],$obj['telephone'],$obj['date'],$obj['type'],$obj['adresse']]);
     //     var_dump($rep);
     // $rep->exec($sql);
     //     var_dump($rep->exec($sql));
@@ -27,8 +27,8 @@ class EtudiantDao extends Manager {
     
         $repo =Manager::getConnexion();
         var_dump($repo);
-        $reqs=$repo->prepare('INSERT INTO etudiant SET matricule=?,prenom=?, nom=?, email=?, telephone=?,date=?,numChambre=?');
-        $reqs->execute([$obj['matricule'],$obj['prenom'],$obj['nom'],$obj['email'],$obj['telephone'],$obj['date'],$obj['numChambre']]);
+        $reqs=$repo->prepare('INSERT INTO etudiant SET matricule=?,prenom=?, nom=?, email=?, telephone=?,date=?,type=?,numChambre=?');
+        $reqs->execute([$obj['matricule'],$obj['prenom'],$obj['nom'],$obj['email'],$obj['telephone'],$obj['date'],$obj['type'],$obj['numChambre']]);
     //     var_dump($rep);
     // $rep->exec($sql);
     //     var_dump($rep->exec($sql));
@@ -69,6 +69,16 @@ class EtudiantDao extends Manager {
         $req->execute();
         $etudiant=$req->fetchAll();
         return $etudiant;
+    }
+
+    public function searching($res)
+    {
+        $pdo =Manager::getConnexion();
+
+        $req=$pdo->prepare('SELECT * FROM etudiant WHERE matricule=? OR type=? OR numChambre=?');
+        $req->execute([$res,$res,$res]); 
+        $user=$req->fetchAll();
+        return $user;
     }
     public function updateChbr($id){
         $pdo =Manager::getConnexion();

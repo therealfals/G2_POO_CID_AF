@@ -17,7 +17,7 @@ Class Etudiantcontroller extends Controller{
     {
         $this->dao=new EtudiantDao();
         $etudss=  $this->dao->modifEtud($_POST);
-        var_dump($_POST);
+       // var_dump($_POST);
         echo json_encode(  $etudss);
     }
     public function deleteEtudiant()
@@ -72,12 +72,14 @@ Class Etudiantcontroller extends Controller{
 
     }
     public function showEtudiant(){
+
         $this->view="enregistrerEtudiant";
         $this->layout="default";
         $this->folder="etudiant";
         $this->render();
        
         }
+       
       public function listeNum(){
         //   var_dump($_POST);
         if(isset($_POST['search'])){
@@ -86,8 +88,23 @@ Class Etudiantcontroller extends Controller{
             echo json_encode($req);
         }
       }
+
+      public function search()
+      {   $this->dao=new EtudiantDao();
+        $req=$this->dao->searching($_POST['search']);
+        echo json_encode($req);
+        //   var_dump($_POST)
+      }
+
+
        public function addEtudiant(){
            if(isset($_POST['btn_etud'])){
+               if($_POST['bourse']=='aucune'){
+                $_POST['type']='Non boursier';
+               }else{
+                $_POST['type']='Boursier';
+
+               }
             extract($_POST);
            $this->dao=new EtudiantDao();
             //Validation
@@ -118,7 +135,7 @@ Class Etudiantcontroller extends Controller{
             if(isset($_POST['adresse'])){
                 $this->dao->addAddr($row);
             }else{
-                var_dump($_POST);
+                // var_dump($_POST);
             $chambre=$this->dao->getChbr($_POST['list']);
               
                 // if(strlen($chambre->numBatiment)==1){
@@ -150,6 +167,12 @@ Class Etudiantcontroller extends Controller{
             }else{
                 echo"ereeeeurr";
             }
+            $this->data_view["title"]="Pour proposer des quizz";
+                  $this->layout="default";
+                  $this->folder="etudiant";
+
+                  $this->view="enregistrerEtudiant";
+                  $this->render();    
         }
           
        }

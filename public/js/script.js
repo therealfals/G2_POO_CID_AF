@@ -5,6 +5,8 @@ $('#bourse').focusout(function(){
         var input=document.createElement('input')
         input.setAttribute('type','text')
         input.setAttribute('name','adresse')
+        input.setAttribute('id','adresse')
+
         input.setAttribute('class','form-control border border-primary bg bg-dark text-white rounded rounded-pill')
         $('#div').append(input)
     }
@@ -20,7 +22,7 @@ $('#bourse').focusout(function(){
         radio.setAttribute('name','loge')
         radio.setAttribute('value','no')
 
-        radio.setAttribute('class','form-inline float-right ')
+        radio.setAttribute('class','fot ')
         radio.setAttribute('onChange','teste(this)')
 
         radio.setAttribute('id','loge ')
@@ -28,14 +30,26 @@ $('#bourse').focusout(function(){
         checkbox.setAttribute('type','radio')
         checkbox.setAttribute('name','loge')
         checkbox.setAttribute('value','yes')
+        var span=document.createElement('span')
+        span.innerText='Logé'
+        var span1=document.createElement('span')
+        span1.innerText='Non logé'
 
-        checkbox.setAttribute('class','form-inline float-right ')
+        checkbox.setAttribute('class','float- ')
         checkbox.setAttribute('onChange','teste(this)')
 
         checkbox.setAttribute('id','loge ')
+        span.append(checkbox)
+        span1.append(radio)
+
      //   $('#div').append(input)
-        $('#div').append(checkbox)
-        $('#div').append(radio)
+
+        // $('#div').append(checkbox)
+        $('#div').append(span)
+        $('#div').append('&nbsp;&nbsp;&nbsp;')
+        $('#div').append(span1)
+
+        // $('#div').append(radio)
 
     }
  
@@ -55,6 +69,8 @@ var y=4;
             console.log(data);
             var select=document.createElement('select')
             select.setAttribute('name','list')
+            select.setAttribute('class','form-control bg bg-dark rounded rounded-pill border border-primary text-white')
+
             for (let i = 0; i < data[0].length; i++) {
                var option=document.createElement('option')
                option.setAttribute('value',data[0][i].id)
@@ -83,3 +99,53 @@ var y=4;
     $('#dive').append(input)
    }
 }
+
+
+$('#myForm').submit(function(e){
+    if($('#prenom').val()==''){
+        $('#errPrenom').text('Remplir prenom')
+        e.preventDefault()
+    }else{
+        $('#errPrenom').text('')
+
+    }
+    if($('#date').val()==''){
+        $('#errDate').text('Remplir date')
+        e.preventDefault()
+    }else{
+        $('#errDate').text('')
+
+    }
+    if($('#bourse').val()==''){
+        $('#errBourse').text('Remplir bourse')
+        e.preventDefault()
+    }else{
+        $('#errBourse').text('')
+
+    }
+    if($('#nom').val()==''){
+        $('#errNom').text('Nom invalide')
+
+        e.preventDefault()
+    }else{
+        $('#errNom').text('')
+
+    }
+    if($('#email').val()==''){
+        $('#errEmail').text('Remplir email')
+
+        e.preventDefault()
+    }else{
+        $('#errEmail').text('')
+
+    }
+    if($('#telephone').val()==''){
+        $('#errTelephone').text('Remplir telephone')
+
+        e.preventDefault()
+    }else{
+        $('#errTelephone').text('')
+
+    }
+    
+})

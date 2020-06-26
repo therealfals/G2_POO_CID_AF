@@ -31,7 +31,7 @@
   public function inserer($sql){
           $this->getConnexion();
            $nbreLigne= $this->pdo->exec($sql);
-           var_dump($nbreLigne);
+        //    var_dump($nbreLigne);
          $this->closeConnexion();
           return $nbreLigne;
           
@@ -66,7 +66,7 @@
   public function findAll(){
     $sql="select * from $this->tableName";
     $data=$this->executeSelect($sql);
-    var_dump($data);
+    // var_dump($data);
   }
 public function findById($id){
     $sql="select * from $this->tableName where id=$id ";

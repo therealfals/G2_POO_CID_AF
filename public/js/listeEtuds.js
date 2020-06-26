@@ -38,7 +38,8 @@ $.ajax({
                 td4.innerText=data[i].email
                 var tdf4=document.createElement('td')
                 tdf4.innerText=data[i].telephone
-                 
+                var type=document.createElement('td')
+                type.innerText=data[i].type
                 var td5=document.createElement('td')
                 var td6=document.createElement('td')
 
@@ -78,7 +79,9 @@ $.ajax({
                 tr.append(td3)
                 tr.append(td4)
                 tr.append(tdf4)
+                tr.append(type)
 
+                
                  
                 tr.append(td5)
                 tr.append(td6)
@@ -127,7 +130,11 @@ if(sh-st <= ch){
 
                 var td4=document.createElement('td')
                 td4.innerText=data[i].email
-
+                var tdf4=document.createElement('td')
+                tdf4.innerText=data[i].telephone
+                var type=document.createElement('td')
+                type.innerText=data[i].type
+                 
                 var td5=document.createElement('td')
                 var td6=document.createElement('td')
 
@@ -143,21 +150,18 @@ if(sh-st <= ch){
                     td6.innerText="Neant"
 
                 }
-                
+
                 var td7=document.createElement('td')
-                var td8=document.createElement('td')
                 var mod=document.createElement('button')
                 mod.setAttribute('id',data[i].id)
                 mod.setAttribute('class','btn btn-success')
                 mod.setAttribute('onClick','modifier(this)')
                 mod.setAttribute('data-toggle','modal')
                 mod.setAttribute('data-target','#staticBackdrop')
-
-               
                 mod.innerText='Modifier'
 
                 td7.append(mod)
-            
+                var td8=document.createElement('td')
                 var sup=document.createElement('button')
                 sup.setAttribute('id',data[i].id)
                 sup.setAttribute('class','btn btn-danger')
@@ -165,15 +169,18 @@ if(sh-st <= ch){
 
                 sup.innerText='Supprimer'
                 td8.append(sup)
-
                 tr.append(td1)
                 tr.append(td2)
                 tr.append(td3)
                 tr.append(td4)
+                tr.append(tdf4)
+                
+                tr.append(type)
+
                 tr.append(td5)
                 tr.append(td6)
                 tr.append(td7)  
-                tr.append(td8)
+                 tr.append(td8)
                 $('#table').append(tr)
             
             
@@ -181,6 +188,7 @@ if(sh-st <= ch){
             
                 
             }
+            offset +=7
         }
     });
 }
@@ -200,13 +208,13 @@ function supprimer(e){
         }  
        })
     }else{
-        alert('yt')
+        // alert('yt')
     }
 }
 
 function modifier(e){
     var p=e.getAttribute('id')
-    alert(p)
+    // alert(p)
     $.ajax({
         method:'POST',
        url:"http://localhost/G2_POO_CID_AF/etudiant/getEtudiantByID",
@@ -254,4 +262,70 @@ $('#updateEtudiant').submit(function(e) {
         }
     })
     
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$('#search').submit(function(e){
+e.preventDefault()
+$.ajax({
+    method:'POST',
+    url:'http://localhost/G2_POO_CID_AF/etudiant/search',
+    data:$(this).serialize(),
+    dataType:'JSON',
+    success:function(data){
+        $('#serse').html('')
+
+        if(data.length>0){
+
+            $('#serse').append("<thead><tr><th scope='col'>Matricule</th> <th scope='col'>Prenom</th><th scope='col'>Nom</th><th scope='col'>Email</th><th scope='col'>telephone</th><th scope='col'>Adresse</th><th scope='col'>Logement</th><th scope='col'> Type</th>     </thead>")
+
+        }else{
+            $('#serse').append("<h3 class='text-center'>Aucun Resultat</h3>")
+        }
+        for (let i = 0; i < data.length; i++) {
+           var tr=document.createElement('tr')
+           var tds=document.createElement('td')
+           tds.innerText=data[i].matricule
+           var td=document.createElement('td')
+           td.innerText=data[i].prenom
+           var td1=document.createElement('td')
+           td1.innerText=data[i].nom
+           var td2=document.createElement('td')
+           td2.innerText=data[i].email
+           var td3=document.createElement('td')
+           td3.innerText=data[i].telephone
+           var td4=document.createElement('td')
+           td4.innerText=data[i].adresse
+           var td5=document.createElement('td')
+           td5.innerText=data[i].type
+           var td6=document.createElement('td')
+           td6.innerText=data[i].numChambre
+           tr.append(tds)
+            tr.append(td)
+         
+            tr.append(td1)
+            tr.append(td2)
+            tr.append(td3)
+            tr.append(td4)
+      
+            tr.append(td6)
+            tr.append(td5)
+            $('#serse').append(tr)
+        }
+      
+    }
+
+})
 })

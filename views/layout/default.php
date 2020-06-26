@@ -14,7 +14,7 @@
 </head>
 <body>
     
-<div class="container bg bg-secondary"style='height:600px;'>
+<div class="container bg bg-secondary"style=''>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
   <a class="navbar-brand" href="#">UNIVERS CIDAF</a>
@@ -39,7 +39,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="<?=BASE_URL."/chambre/showChambre"?>">Enregistrer une chambre</a>
-          <a class="dropdown-item" href="#">Liste chambres</a>
+          <a class="dropdown-item" href="<?=BASE_URL."/chambre/showListChambre"?>">Liste chambres</a>
        
         </div>
       </li>
