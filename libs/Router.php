@@ -3,8 +3,7 @@
 class Router{
     
  private $ctrl;
- //Url => index.php?url=security/index
- //Reecrire URL =>security/index
+
     function route(){
 
         try{
@@ -20,23 +19,22 @@ class Router{
                  require_once( $pathLibs); 
              }     
              });
-
+                        
              if(isset($_GET['url'])){
                 $url=explode("/",filter_var($_GET['url'],FILTER_SANITIZE_URL));
-                  //Classe Controller
+                
                   $ctrl= ucfirst(strtolower($url[0]))."Controller";
                   $pathCtrl="./controllers/".$ctrl.".php";
                     if(file_exists($pathCtrl)){
                         require_once($pathCtrl);
-                        //Instancier un Objet Controller
+                      
                         $this->ctrl=new $ctrl();
-                       // $etudiant = new Etudiant();
+                       
                         $action=$url[1];
                         if(method_exists($this->ctrl, $url[1])){
-                          //Action Existe dans le Controller
                            $this->ctrl->{$action}();
+                           
                         }else{
-                         //Action n'Existe pas dans le Controller
                           $pathCtrl="./controllers/ErreurController.php";
                           require_once($pathCtrl);
                           $erreurCtrl=new ErreurController();

@@ -8,12 +8,12 @@ class ChambreDao extends Manager {
     }
 
     
-    public function addChambre($obj){
+    public function addChambre(Chambre $chambre){
     
         $rep =Manager::getConnexion();
-        // var_dump($rep);
+
         $req=$rep->prepare('INSERT INTO chambre SET numero=?, numBatiment=?,type=?');
-        $req->execute([$obj['numero'],$obj['numBatiment'],$obj['type']]);
+        $req->execute([$chambre->getNumero(),$chambre->getNumBatiment(),$chambre->getType()]);
   
        
     }

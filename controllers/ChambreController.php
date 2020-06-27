@@ -12,27 +12,17 @@ class chambreController extends Controller{
 
     }
     public function addingChambre(){
-        $unik=rand(1000, 9999);
-        if(strlen($_POST['numBatiment'])==1){
-            $numChambre="00"; 
-            $numChambre.=$_POST['numBatiment']; 
-            $numChambre.=$unik; 
+   
+        if(isset($_POST['btn_chamb'])){
+            
+            $_POST['numero']= Functions::genereNum($_POST['numBatiment']);
+            require_once'./model/Chambre.php';
+            $chambre= new Chambre($_POST);
+                    $this->daos= new ChambreDao(); 
+                    $this->daos->addChambre($chambre);  
 
         }
-        if(strlen($_POST['numBatiment'])==2){
-            $numChambre="0"; 
-            $numChambre.=$_POST['numBatiment'];
-            $numChambre.=$unik; 
-        }
-        if(strlen($_POST['numBatiment'])==3){
-            $numChambre=$_POST['numBatiment'];
-            $numChambre.=$unik; 
-        }
-        // $_POST['numero']="";
-        // $_POST['numero'].= $_POST['numBatiment'];
-        $_POST['numero']= $numChambre;
-                $this->daos= new ChambreDao(); 
-        $this->daos->addChambre($_POST);  
+        
         $this->layout="default";
         $this->folder="chambre";
 

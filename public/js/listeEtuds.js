@@ -101,7 +101,6 @@ $.ajax({
     //  Scroll
 const scrollZone = $('#scrollZone')
 scrollZone.scroll(function(){
-//console.log(scrollZone[0].clientHeight)
 const st = scrollZone[0].scrollTop;
 const sh = scrollZone[0].scrollHeight;
 const ch = scrollZone[0].clientHeight;
@@ -222,8 +221,7 @@ function modifier(e){
        dataType:'JSON',
        success:function(data){
            console.log(data)
-        //    alert(data)
-        //    alert(data.matricule)
+    
            $('#id').attr('value',data.id)
 
            $('#matricule').attr('value',data.matricule)

@@ -1,7 +1,7 @@
 <?php
 Class Validator{
     private $errors=[];
-
+    
     public function getErrors(){
         return $this->errors;
     }
@@ -12,6 +12,7 @@ Class Validator{
  
  
     public function isVide($champ,$key,$sms="Champ Obligatoire"){
+      
       if($champ==""){
          $this->errors[$key]=$sms;
       }

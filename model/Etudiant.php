@@ -1,21 +1,18 @@
 <?php 
 class Etudiant  {
    
-        //Attributs
-           //Encapsulation
-            public  $id;
-            public  $nom;
-            public  $prenom;
-            public  $email;
-            public  $date;
-            public  $matricule;
+        
+           private  $id;
+           private  $matricule;
 
-            private  $pwd;
-            private  $login;
-            private  $avatar;
-            private  $statut;
-            private  $profil;
-    // public abstract  function hydrate($row);
+           private  $nom;
+           private  $prenom;
+           private  $email;
+           private  $date;
+            private  $type;
+            private  $adresse;
+            private  $numChambre;
+            
       
          public   function __construct($row=null){
              if($row!=null){
@@ -25,15 +22,27 @@ class Etudiant  {
          }
        
          public  function hydrate($row){
-          //  $this->id=$row['id']; 
+      
             $this->nom=$row['nom']; 
             $this->prenom=$row['prenom']; 
             $this->email=$row['email']; 
             $this->telephone=$row['telephone']; 
             $this->matricule=$row['matricule']; 
+            $this->date=$row['date']; 
 
-           // $this->date=$row['date']; 
-         }
+            $this->type=$row['type']; 
+            if(isset($row['numChambre'])){
+                $this->numChambre=$row['numChambre']; 
+
+            }
+           
+            if(isset($row['adresse'])){
+                $this->adresse=$row['adresse']; 
+
+            }
+
+
+        }
           //Methodes
             //Getters
             public function getId(){
@@ -58,14 +67,19 @@ class Etudiant  {
                 return $this->email;
             }
     
-            public function getAvatar(){
-                return $this->avatar;
+            public function getType(){
+                return $this->type;
+            }
+            public function getDate(){
+                return $this->date;
             }
     
-            public function getProfil(){
-                return $this->profil;
+            public function getNumChambre(){
+                return $this->numChambre;
             }
-    
+            public function getAdresse(){
+                return $this->adresse;
+            }
             //Setters
         
             public function setId($id){

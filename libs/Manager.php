@@ -1,19 +1,19 @@
 <?php
  class Manager {
-    //Connexion est Fermée
+    
     public static $pdo=null;
     protected $tableName;
     protected $className;
 
   public static function getConnexion(){
-      //Connexion est fermée
+     
       
           try{
-            self::$pdo = new PDO("mysql:host=localhost;dbname=g2_poo_cid_af","root","");
+            self::$pdo = new PDO("mysql:host=mysql-universcidaf.alwaysdata.net;dbname=universcidaf_g2_poo_cid_af","209691","LiLBaB'S23950");
             self::$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
             self::$pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
             return self::$pdo;
-           // var_dump(self::$pdo);
+          
           }catch(PDOException $ex){
              die($ex);
           }
@@ -36,17 +36,7 @@
           return $nbreLigne;
           
    }
-//    public function insertEtudiant($sql){
-//     $this->getConnexion();
-//      $req= $this->pdo->prepare($sql);
-//      $req->execute([]);
-//     $this->closeConnexion();
-//     return $req;
-// }
-// public function preps(){
-//     $req= $this->pdo->prepare($sql);
 
-// }
 
   public function executeSelect($sql){
       
@@ -55,8 +45,8 @@
       $result=$this->pdo->query($sql);
       $data=[];
       foreach( $result as $rowBD){
-        //ORM=> tuple BD transformer en Objet
-        $data[]=new $this->className($rowBD);//new User($rowBD)     
+      
+        $data[]=new $this->className($rowBD);     
       }
       $this->closeConnexion();
       return $data;
@@ -66,7 +56,7 @@
   public function findAll(){
     $sql="select * from $this->tableName";
     $data=$this->executeSelect($sql);
-    // var_dump($data);
+   
   }
 public function findById($id){
     $sql="select * from $this->tableName where id=$id ";
@@ -84,11 +74,6 @@ public function delete($id){
 
 
 
-    //Connexion
-    //FermerConnexion
-    //Executer une requete et Retourner un Résultat
-       //Execution Requete MaJ(Insert,Update,delete)
-       //Execution requete Select
 
     
 }
